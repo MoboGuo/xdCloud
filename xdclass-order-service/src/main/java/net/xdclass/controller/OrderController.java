@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -37,8 +38,8 @@ public class OrderController {
 //        this.videoService = videoService;
 //    }
 
-    @RequestMapping("/save")
-    public Object save(int videoId) {
+    @RequestMapping("/find_by_id")
+    public Object findById(int videoId) {
 
 //        List<ServiceInstance> list =  discoveryClient.getInstances("xdclass-video-service");
 
@@ -55,5 +56,10 @@ public class OrderController {
         }
 
         return videoOrder;
+    }
+
+    @RequestMapping("save")
+    public Object save(@RequestBody Video video) {
+        return videoService.save(video);
     }
 }
