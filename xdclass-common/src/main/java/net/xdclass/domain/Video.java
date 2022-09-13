@@ -21,4 +21,5 @@ public class Video {
 
     private Double point;
 
+    private String serverInfo;
 }
