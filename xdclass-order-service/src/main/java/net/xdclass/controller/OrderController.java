@@ -16,7 +16,9 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/video_order")
@@ -58,8 +60,26 @@ public class OrderController {
         return videoOrder;
     }
 
-    @RequestMapping("save")
+    @RequestMapping("/save")
     public Object save(@RequestBody Video video) {
         return videoService.save(video);
+    }
+
+    int temp = 0;
+    @RequestMapping("/list")
+    public Object list(){
+//        try {
+//            TimeUnit.SECONDS.sleep(3);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        temp++;
+        if(temp%3 == 0){
+            throw  new RuntimeException();
+        }
+        Map<String,String> map  = new HashMap<>();
+        map.put("title1","ALibabaCloud微服务专题");
+        map.put("title2","小滴课堂面试专题第一季");
+        return map;
     }
 }
