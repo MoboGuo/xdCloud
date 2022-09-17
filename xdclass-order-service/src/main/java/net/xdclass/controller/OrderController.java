@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -67,19 +68,20 @@ public class OrderController {
 
     int temp = 0;
     @RequestMapping("/list")
-    public Object list(){
+    public Object list(HttpServletRequest request){
 //        try {
 //            TimeUnit.SECONDS.sleep(3);
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
         temp++;
-        if(temp%3 == 0){
-            throw  new RuntimeException();
-        }
+//        if(temp%3 == 0){
+//            throw  new RuntimeException();
+//        }
         Map<String,String> map  = new HashMap<>();
         map.put("title1","ALibabaCloud微服务专题");
         map.put("title2","小滴课堂面试专题第一季");
+        map.put("ip", request.getServerPort() + "");
         return map;
     }
 }
