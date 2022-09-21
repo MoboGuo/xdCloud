@@ -7,8 +7,10 @@ import net.xdclass.service.OrderService;
 import net.xdclass.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,9 +22,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("api/v1/video_order")
+@RefreshScope
 public class OrderController {
 
     @Resource
@@ -40,6 +44,9 @@ public class OrderController {
 //        this.discoveryClient = discoveryClient;
 //        this.videoService = videoService;
 //    }
+
+    @Value("${video.title}")
+    private String title;
 
     @RequestMapping("/find_by_id")
     public Object findById(int videoId) {
@@ -74,13 +81,14 @@ public class OrderController {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        temp++;
+//        temp++;
 //        if(temp%3 == 0){
 //            throw  new RuntimeException();
 //        }
         Map<String,String> map  = new HashMap<>();
         map.put("title1","ALibabaCloud微服务专题");
         map.put("title2","小滴课堂面试专题第一季");
+        map.put("title3", title);
         map.put("ip", request.getServerPort() + "");
         return map;
     }

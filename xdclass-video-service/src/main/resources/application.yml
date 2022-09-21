@@ -1,25 +1,31 @@
-server:
-  port: 9003
-spring:
-  application:
-    name: xdclass-video-service
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/cloud_video?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: root
-    password: guo960113
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 182.92.11.233:8848
-    #dashboard: 8080 控制台端口
-    #port: 9999 本地启的端口，随机选个不能被占用的，与dashboard进行数据交互，会在应用对应的机器上启动一个 Http Server，该 Server 会与 Sentinel 控制台做交互, 若被占用,则开始+1一次扫描
-    sentinel:
-      transport:
-        dashboard: localhost:8080
-        port: 9999
-# 控制台输出sql、下划线转驼峰
-mybatis:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    map-underscore-to-camel-case: true
+#server:
+#  port: 9003
+#spring:
+#  application:
+#    name: xdclass-video-service
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/cloud_video?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+#    username: root
+#    password: guo960113
+#  zipkin:
+#    base-url: http://127.0.0.1:9411/ #zipkin地址
+#    discovery-client-enabled: false  #不用开启服务发现
+#  sleuth:
+#    sampler:
+#      probability: 0.1 #采样百分比
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 182.92.11.233:8848
+#    #dashboard: 8080 控制台端口
+#    #port: 9999 本地启的端口，随机选个不能被占用的，与dashboard进行数据交互，会在应用对应的机器上启动一个 Http Server，该 Server 会与 Sentinel 控制台做交互, 若被占用,则开始+1一次扫描
+#    sentinel:
+#      transport:
+#        dashboard: localhost:8080
+#        port: 9999
+## 控制台输出sql、下划线转驼峰
+#mybatis:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    map-underscore-to-camel-case: true
